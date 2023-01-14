@@ -40,7 +40,7 @@ router.get('/', ensureAuth, async (req, res) => {
         console.error(err)
         res.render('error/500')
     }
-
+    
 })
 
 // @desc Show edit page
@@ -49,11 +49,11 @@ router.get('/edit/:id', ensureAuth, async (req, res) => {
     const proposal = await Proposal.findOne({
         _id: req.params.id
     }).lean()
-
+    
     if(!proposal) {
         return res.render('error/404')
     }
-
+    
     if (proposal.user != req.user.id) {
         res.redirect('/proposals')
     } else {
@@ -62,4 +62,27 @@ router.get('/edit/:id', ensureAuth, async (req, res) => {
         })
     }
 })
+
+// @desc Update Proposal
+// @route PUT /proposals/:id
+router.put('/:id', ensureAuth, async (req, res) => {
+    let proposal = await Proposal.findById(req.params.id).lean()
+    // await is only valid in async function and the top level bodies of modules
+    if (!proposal) {
+        return res.render('error/404')
+    }
+    
+    if (proposal.user != req.user.id) {
+        res.redirect('/proposals')
+    } else {
+        proposal = await Proposal.findOneAndUpdate({ _id: req.params.id }, req.body, {
+            new: true,
+            runValidators: true, 
+        })
+        res.redirect('/dashboard')
+
+    }
+        
+})
+
 module.exports = router

@@ -1,6 +1,7 @@
 <h3>Edit Proposal</h3>
 <div class="row">
-    <form action="/proposals" method="POST" class="col s12">
+    <form action="/proposals/{{proposal._id}}" method="POST" class="col s12">
+        <input type="hidden" name="_method" value="PUT" />
         <div class="row">
             <div class="input-field">
                 <input type="text" id="title" name="title" value="{{proposal.title}}">
