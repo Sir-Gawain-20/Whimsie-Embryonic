@@ -11,3 +11,13 @@ p {
 .fa-small {
     font-size: 18px !important;
 }
+
+.btn-float {
+    float: left;
+    margin-right: 10px;
+}
+/* float to the left side of its container td */
+
+.img-small {
+    width: 180px;
+}
