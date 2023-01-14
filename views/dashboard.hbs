@@ -14,7 +14,7 @@
             {{#each proposals}}
                 <tr>
                     <td><a href="/proposals/{{_id}}">{{title}}</a></td>
-                    <td>{{createAt}}</td>
+                    <td>{{formatDate createAt 'MMMM Do YYYY, h:mm:ss a'}}</td>
                     <td><span class="dash-status">{{status}}</span></td>
                     <td></td>
                 </tr>

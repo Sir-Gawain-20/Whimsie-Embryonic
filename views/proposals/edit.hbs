@@ -1,9 +1,9 @@
-<h3>Propose Your Project Ideas</h3>
+<h3>Edit Proposal</h3>
 <div class="row">
     <form action="/proposals" method="POST" class="col s12">
         <div class="row">
             <div class="input-field">
-                <input type="text" id="title" name="title">
+                <input type="text" id="title" name="title" value="{{proposal.title}}">
                 <label for="title">Title</label>
             </div>
         </div>
@@ -11,9 +11,11 @@
         <div class="row">
             <div class="input-field">
                 <select id="status" name="status">
+                    {{#select proposal.status}}
                     <option value="public" selected>Public</option>
                     <option value="private">Private</option>
                     <option value="unpublished">Unpublished</option>
+                    {{/select}}
                 </select>
                 <label for="status">Status</label>
             </div>
@@ -22,13 +24,13 @@
         <div class="row">
             <div class="input-field">
                 <h5>Write Down Your Proposal:</h5>
-                <textarea id="body" name="body"></textarea>
+                <textarea id="body" name="body">{{proposal.body}}</textarea>
                 {{!-- ckeditor --}}
             </div>
         </div>
 
         <div class="row">
-            <input type="submit" value="Add" class="btn">
+            <input type="submit" value="Save" class="btn">
             <a href="/dashboard" class="btn orange">Cancel</a>
         </div>
 
